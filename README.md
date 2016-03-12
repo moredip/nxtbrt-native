@@ -2,12 +2,13 @@
 
 - android
 - redux, immutability
+- typescript?!
 
 ## Tooling
 - go script
 - dockerized android build?
 - eslint
--- build customization in general
+-- build customization in general (packager)
 
 ## Testing 
 -- unit testing

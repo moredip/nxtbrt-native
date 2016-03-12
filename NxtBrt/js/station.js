@@ -16,37 +16,17 @@ function inequality(lhs,rhs){
   return lhs !== rhs;
 }
 
-function renderStation({name,on}){
-  return (
-    <View style={styles.stationContainer}>
-      <TouchableOpacity onPress={on.press}>
-        <Text style={styles.station}>{name}</Text>
-      </TouchableOpacity>
-    </View>
-  );
+function renderEtd(number){
+  return <Text>{number}</Text>;
 }
 
-export default function renderStations({onStationPressed}){
+export default function renderStation({stationId}){
   const ds = new ListView.DataSource({
     rowHasChanged: inequality
-  }).cloneWithRows(STATIONS);
+  }).cloneWithRows([1,2,3]);
 
   function renderRow(rowData){
-    const {
-      abbr: stationId,
-      name: stationName
-    } = rowData;
-
-    const station = {
-      name:stationName,
-      id:stationId
-    };
-
-    function pressHandler(){
-      onStationPressed(station);
-    }
-
-    return renderStation({name:stationName,on:{press:pressHandler}});
+    return renderEtd(rowData);
   }
 
   return (
