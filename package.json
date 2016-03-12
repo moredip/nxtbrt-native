@@ -1,0 +1,10 @@
+{
+  "name": "nxtbrt-native",
+  "version": "1.0.0",
+  "description": "nxtbrt, but native courtesy of React Native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pete Hodgson"
+}
