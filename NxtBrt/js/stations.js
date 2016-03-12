@@ -3,9 +3,10 @@
 import React, {
   AppRegistry,
   StyleSheet,
+  View,
   Text,
   ListView,
-  View
+  TouchableOpacity,
 } from 'react-native';
 
 import STATIONS from './station-data';
@@ -15,10 +16,14 @@ function inequality(lhs,rhs){
   return lhs !== rhs;
 }
 
-function renderStation(station){
-  return <View style={styles.stationContainer}>
-    <Text style={styles.station}>{station.name}</Text>
-  </View>;
+function renderStation({name,on}){
+  return (
+    <View style={styles.stationContainer}>
+      <TouchableOpacity onPress={on.press}>
+        <Text style={styles.station}>{name}</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
 
 export default function renderStations(){
@@ -26,10 +31,23 @@ export default function renderStations(){
     rowHasChanged: inequality
   }).cloneWithRows(STATIONS);
 
+  function renderRow(rowData){
+    const {
+      abbr: stationId,
+      name: stationName
+    } = rowData;
+
+    function pressHandler(){
+      console.log('stations pressed: ',stationId);
+    }
+
+    return renderStation({name:stationName,on:{press:pressHandler}});
+  }
+
   return (
     <ListView
       dataSource={ds}
-      renderRow={renderStation}
+      renderRow={renderRow}
       style={styles.listView}
     />
   );

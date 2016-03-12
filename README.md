@@ -4,6 +4,8 @@
 - redux, immutability
 
 ## Tooling
+- go script
+- dockerized android build?
 - eslint
 -- build customization in general
 
