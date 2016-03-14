@@ -18,8 +18,19 @@ function inequality(lhs,rhs){
   return lhs !== rhs;
 }
 
+function formattedDepartureTime(minsToDeparture){
+  switch(minsToDeparture){
+    case 0:
+      return 'now';
+    case 1:
+      return '1 min';
+    default:
+      return `${minsToDeparture} mins`;
+  }
+}
+
 function renderEtd(etd){
-  const label = `${etd.dest.name}: ${etd.minutes} mins`; // FIXME: plural/singular
+  const label = `${etd.dest.name}: ${formattedDepartureTime(etd.minutes)}`;
   return (
     <View style={[styles.etdContainer,styles[etd.lineColor]]}>
       <Text style={styles.etd}>{label}</Text>

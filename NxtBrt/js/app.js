@@ -12,6 +12,7 @@ import renderNavBar from './navbar';
 import StationsScreen from './stations';
 import StationScreen from './station';
 
+
 export default renderApp;
 
 function renderScene(route,navigator){
@@ -41,6 +42,6 @@ function renderApp() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 64,
+    paddingTop: Navigator.NavigationBar.Styles.General.TotalNavHeight
   },
 });

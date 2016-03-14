@@ -24,3 +24,4 @@
 - deploy to device
 - beta users
 - appetize.io
+- AppHub
