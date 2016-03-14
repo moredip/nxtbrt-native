@@ -32,7 +32,7 @@ export default [
   {"name":"Oakland Int'l Airport","abbr":"OAKL","lat":"37.71297174","long":"-122.21244024"},
   {"name":"Orinda","abbr":"ORIN","lat":"37.87836087","long":"-122.1837911"},
   {"name":"Pittsburg/Bay Point","abbr":"PITT","lat":"38.018914","long":"-121.945154"},
-  {"name":"Pleasant Hill/Contra Costa Centre","abbr":"PHIL","lat":"37.928403","long":"-122.056013"},
+  {"name":"Pleasant Hill/Contra Costa","abbr":"PHIL","lat":"37.928403","long":"-122.056013"},
   {"name":"Powell St.","abbr":"POWL","lat":"37.784991","long":"-122.406857"},
   {"name":"Richmond","abbr":"RICH","lat":"37.936887","long":"-122.353165"},
   {"name":"Rockridge","abbr":"ROCK","lat":"37.844601","long":"-122.251793"},

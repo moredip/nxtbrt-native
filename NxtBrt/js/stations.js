@@ -20,7 +20,7 @@ function renderStation({name,on}){
   return (
     <View style={styles.stationContainer}>
       <TouchableOpacity onPress={on.press}>
-        <Text style={styles.station}>{name}</Text>
+        <Text numberOfLines={1} style={styles.station}>{name}</Text>
       </TouchableOpacity>
     </View>
   );

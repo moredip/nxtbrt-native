@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   etd: {
-    fontSize: 30,
+    fontSize: 20,
     alignSelf: "center",
   },
   etdContainer: {

@@ -36,8 +36,8 @@ const NavigationBarRouteMapper = {
       <TouchableOpacity
         onPress={() => navigator.pop()}
         style={styles.navBarLeftButton}>
-        <Text style={[styles.navBarText, styles.navBarButtonText]}>
-          Home
+        <Text style={styles.navBarLeftButtonText}>
+          &lt;
         </Text>
       </TouchableOpacity>
     );
@@ -58,14 +58,13 @@ const styles = StyleSheet.create({
     fontWeight: '200',
     marginVertical: 7,
   },
-  navBarText: {
-    fontSize: 16,
-    marginVertical: 10,
-  },
   navBarLeftButton: {
     paddingLeft: 10,
   },
-  navBarButtonText: {
+  navBarLeftButtonText: {
+    fontSize: 35,
+    fontWeight: '100',
+    marginTop: -4,
     color: Colors.bgLight,
   },
 });
