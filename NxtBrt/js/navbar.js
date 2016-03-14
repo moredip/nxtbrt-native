@@ -20,9 +20,9 @@ export default function renderNavBar(){
 const NavigationBarRouteMapper = {
   Title(route, navigator, index, navState){
     if( index === 0 ){
-      return <Text>NxtBrt</Text>;
+      return <Text style={styles.navBarTitle}>NxtBrt</Text>;
     }else{
-      return <Text>{route.station.name}</Text>;
+      return <Text style={styles.navBarTitle}>{route.station.name}</Text>;
     }
   },
 
@@ -50,6 +50,22 @@ const NavigationBarRouteMapper = {
 
 const styles = StyleSheet.create({
   navBar: {
-    backgroundColor: Colors.bgLight
+    backgroundColor: Colors.fgDark,
+  },
+  navBarTitle: {
+    fontSize: 20,
+    color: Colors.bgLight,
+    fontWeight: '200',
+    marginVertical: 7,
+  },
+  navBarText: {
+    fontSize: 16,
+    marginVertical: 10,
+  },
+  navBarLeftButton: {
+    paddingLeft: 10,
+  },
+  navBarButtonText: {
+    color: Colors.bgLight,
   },
 });

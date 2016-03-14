@@ -4,6 +4,10 @@
 - redux, immutability
 - typescript?!
 
+- pull to refresh
+- geolocation
+- toast
+
 ## Tooling
 - go script
 - dockerized android build?

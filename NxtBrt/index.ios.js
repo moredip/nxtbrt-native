@@ -2,44 +2,8 @@
 
 import React, {
   AppRegistry,
-  StyleSheet,
-  Navigator,
-  Text,
-  TouchableOpacity,
 } from 'react-native';
 
-import Colors from './js/colors';
-import renderNavBar from './js/navbar';
-import StationsScreen from './js/stations';
-import StationScreen from './js/station';
-
-function renderScene(route,navigator){
-  function onStationPressed(station){
-    navigator.push({name:'STATION',index:1,station:station});
-  }
-
-  switch (route.name) {
-    case('STATION'):
-      return <StationScreen station={route.station}/>;
-    case('STATIONS'):
-      return <StationsScreen onStationPressed={onStationPressed}/>;
-  }
-}
-
-function renderApp() {
-  return (
-    <Navigator
-      initialRoute={{name: 'STATIONS', index: 0}}
-      renderScene={renderScene}
-      navigationBar={renderNavBar()}
-    />
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-});
+import renderApp from './js/app';
 
 AppRegistry.registerComponent('NxtBrt', () => renderApp);
