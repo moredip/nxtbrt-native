@@ -9,10 +9,9 @@ import React, {
   TouchableOpacity,
 } from 'react-native';
 
-import Colors from './colors';
-import fetchEtds from './fetchEtds';
+import {connect} from 'react-redux';
 
-const FAKE_ETDS = [{"dest":{"name":"Fremont","abbr":"FRMT","lat":"37.557355","long":"-121.9764"},"minutes":2,"lineColor":"orange","length":"6"},{"dest":{"name":"Fremont","abbr":"FRMT","lat":"37.557355","long":"-121.9764"},"minutes":24,"lineColor":"orange","length":"6"},{"dest":{"name":"Richmond","abbr":"RICH","lat":"37.936887","long":"-122.353165"},"minutes":4,"lineColor":"orange","length":"6"},{"dest":{"name":"Richmond","abbr":"RICH","lat":"37.936887","long":"-122.353165"},"minutes":26,"lineColor":"white","length":"10"},{"dest":{"name":"Richmond","abbr":"RICH","lat":"37.936887","long":"-122.353165"},"minutes":27,"lineColor":"orange","length":"6"}];
+import Colors from './colors';
 
 function inequality(lhs,rhs){
   return lhs !== rhs;
@@ -38,42 +37,37 @@ function renderEtd(etd){
   );
 }
 
-export default class Station extends React.Component {
+function mapStateToProps({selectedStation,etds}){
+  return {station:selectedStation,etds};
+}
+
+class Station extends React.Component {
   constructor(props){
     super(props);
 
-    const ds = new ListView.DataSource({
+    this.ds = new ListView.DataSource({
       rowHasChanged: inequality
     });
-
-    this.state = {ds,loading:true};
-  }
-
-  componentWillMount() {
-    // TODO: cancel/ignore fetch if component is unmounted
-    fetchEtds(this.props.station.id)
-      .then(this.updateEtds.bind(this));
-  }
-
-  updateEtds(etds){
-    this.setState( {ds: this.state.ds.cloneWithRows(etds), loading:false} );
   }
 
   render(){
-    if( this.state.loading ){
-      return <Text style={styles.loading}>loading...</Text>;
-    }else{
+    const {etds} = this.props;
+    if( etds ){
+      const ds = this.ds.cloneWithRows(etds);
       return (
         <ListView
-          dataSource={this.state.ds}
+          dataSource={ds}
           renderRow={renderEtd}
           style={styles.listView}
         />
       );
+    }else{
+      return <Text style={styles.loading}>loading...</Text>;
     }
   }
 }
 
+export default connect(mapStateToProps)(Station);
 
 const styles = StyleSheet.create({
   listView: {

@@ -34,7 +34,7 @@ const NavigationBarRouteMapper = {
     const previousRoute = navState.routeStack[index - 1];
     return (
       <TouchableOpacity
-        onPress={() => navigator.pop()}
+        onPress={() => navigator.pop()} HERE'S THE ISSUE
         style={styles.navBarLeftButton}>
         <Text style={styles.navBarLeftButtonText}>
           &lt;

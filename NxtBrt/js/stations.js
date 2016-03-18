@@ -9,27 +9,36 @@ import React, {
   TouchableOpacity,
 } from 'react-native';
 
-import STATIONS from './station-data';
+import {connect} from 'react-redux';
+
+import {selectStation} from './actions';
 import Colors from './colors';
 
-function inequality(lhs,rhs){
-  return lhs !== rhs;
+export default connect(mapStateToProps,mapDispatchToProps)(Stations);
+
+function mapStateToProps({stations}){
+  return {stations};
+}
+function mapDispatchToProps(dispatch){
+  return {
+    onStationPress: (station)=> dispatch(selectStation(station))
+  };
 }
 
-function renderStation({name,on}){
+function renderStation({station,onPress}){
   return (
     <View style={styles.stationContainer}>
-      <TouchableOpacity onPress={on.press}>
-        <Text numberOfLines={1} style={styles.station}>{name}</Text>
+      <TouchableOpacity onPress={()=>onPress(station)}>
+        <Text numberOfLines={1} style={styles.station}>{station.name}</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
-export default function renderStations({onStationPressed}){
+function Stations({stations,onStationPress}){
   const ds = new ListView.DataSource({
     rowHasChanged: inequality
-  }).cloneWithRows(STATIONS);
+  }).cloneWithRows(stations);
 
   function renderRow(rowData){
     const {
@@ -42,11 +51,7 @@ export default function renderStations({onStationPressed}){
       id:stationId
     };
 
-    function pressHandler(){
-      onStationPressed(station);
-    }
-
-    return renderStation({name:stationName,on:{press:pressHandler}});
+    return renderStation({station,onPress:onStationPress});
   }
 
   return (
@@ -74,3 +79,8 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.fgDark
   }
 });
+
+function inequality(lhs,rhs){
+  return lhs !== rhs;
+}
+

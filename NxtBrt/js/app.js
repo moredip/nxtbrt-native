@@ -2,46 +2,26 @@
 
 import React, {
   AppRegistry,
-  StyleSheet,
-  Navigator,
-  Text,
-  TouchableOpacity,
 } from 'react-native';
 
-import renderNavBar from './navbar';
-import StationsScreen from './stations';
-import StationScreen from './station';
+import {createStore,applyMiddleware} from 'redux';
+import {Provider} from 'react-redux';
+import thunkMiddleware from 'redux-thunk'
 
+import reducer from './reducer';
+import RootScene from './rootScene';
 
-export default renderApp;
+const store = createStore(
+  reducer,
+  applyMiddleware(thunkMiddleware)
+);
 
-function renderScene(route,navigator){
-  function onStationPressed(station){
-    navigator.push({name:'STATION',index:1,station:station});
-  }
-
-  switch (route.name) {
-    case('STATION'):
-      return <StationScreen station={route.station}/>;
-    case('STATIONS'):
-      return <StationsScreen onStationPressed={onStationPressed}/>;
-  }
-}
-
-function renderApp() {
-  return (
-    <Navigator
-      style={styles.container}
-      initialRoute={{name: 'STATIONS', index: 0}}
-      renderScene={renderScene}
-      navigationBar={renderNavBar()}
-    />
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: Navigator.NavigationBar.Styles.General.TotalNavHeight
-  },
+store.subscribe( function(a,b,c){
+  const state = store.getState();
+  console.log('STATE:', state );
 });
+
+export default function WrappedApp(){
+  return <Provider store={store}><RootScene/></Provider>;
+}
+
